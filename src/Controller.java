@@ -10,7 +10,6 @@ public class Controller {
         this.board = new Board();
         this.gameEngine = new GameEngine(this);
         this.view = new ViewS(this);  
-        
     }
 ////////////////////////////////////
     void buttonClicked(int x,int y){
@@ -21,8 +20,7 @@ public class Controller {
             else {    
             this.board.gameboard[x][y] = 'X';
             }
-        setXO(x, y,(this.gameEngine.player==0?"O":"X"));
-        
+        setXO(x, y,(this.gameEngine.player==0?"O":"X"));     
         }
     }
 
@@ -52,11 +50,12 @@ public class Controller {
             this.view.buttons[x][y].setText(z);
 
             if(Winner()){
-            if(this.gameEngine.player==0)
-                setTextInLabel("Player 1 won");
-            else {setTextInLabel("Player 2 won");
-            }
-            this.gameEngine.gameover=true;
+                if(this.gameEngine.player==0)
+                    setTextInLabel("Player 1 won");
+                else {
+                    setTextInLabel("Player 2 won");
+                }
+                this.gameEngine.gameover=true;
             }
             nextTurn();
         }

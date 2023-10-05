@@ -13,25 +13,7 @@ public class GameEngine {
    }
 
     
-    public  boolean checkforwin(){
-		int fleraInRad=0;
-		for(int x=0; x<this.controller.board.rad-1;x+=1){
-			for(int y=0;y<this.controller.board.rad-1;y+=1){
-				if((controller.board.gameboard[x][y]==controller.board.gameboard[x][y+1])
-				&&((controller.board.gameboard[x][y]=='X')||(controller.board.gameboard[x][y]=='O'))){
-					fleraInRad+=1;
-				}
-				else {
-					fleraInRad=0;
-				}
-				
-			}
-		if(fleraInRad==this.controller.board.rad-1)
-			return true;
-		}
-		
-		return false;
-	}
+ 
 /////////////////////////////////
 	public  boolean checkV(){
 
@@ -78,8 +60,11 @@ public class GameEngine {
 		}
 		return false;
 	} 
+
 //////////////////////////
+
 	public boolean checkD(){
+
 		for(int i = 0; i < this.controller.board.rad; i++){
 			if(this.controller.board.gameboard[i][i] != 'X')
 				break;
@@ -96,6 +81,7 @@ public class GameEngine {
 		}
 		return false;
 	}
+	
 ////////////////////////////////
 	public boolean checkRD(){
 		for(int i = 0; i < this.controller.board.rad; i++){
