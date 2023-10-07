@@ -1,26 +1,38 @@
-
-
+import java.lang.String;
 
 public class Controller {
     GameEngine gameEngine;
     ViewS view; 
     Board board;
+    Player player;
+    int currentPlayer=0;
 
     public Controller(){
-        this.board = new Board();
-        this.gameEngine = new GameEngine(this);
+        this.board = new Board(); 
         this.view = new ViewS(this);  
+        this.player= new Player();
+        this.gameEngine = new GameEngine(this);
     }
+
 ////////////////////////////////////
     void buttonClicked(int x,int y){
         if(!this.gameEngine.gameover){
-            if(this.gameEngine.player == 0) { 
-                this.board.gameboard[x][y] = 'O';   	                
+
+            if(this.view.buttons[x][y].getText()==" "){
+            this.board.gameboard[x][y]=this.player.tecken[currentPlayer];
+            this.view.buttons[x][y].setText(Character.toString( this.player.tecken[currentPlayer]));
+
+                if(Winner()){
+                    String s;
+                    s="Player ";
+                    s+= currentPlayer+1;
+                    s+= " won";
+                    setTextInLabel(s);
+                    this.gameEngine.gameover=true;
+                }
+            nextTurn();
             }
-            else {    
-            this.board.gameboard[x][y] = 'X';
-            }
-        setXO(x, y,(this.gameEngine.player==0?"O":"X"));     
+             
         }
     }
 
@@ -32,8 +44,9 @@ public class Controller {
 
 /////////////////////////////////
     void nextTurn(){
-        this.gameEngine.player=(this.gameEngine.player+1)%2;
+        currentPlayer=(currentPlayer+1)%player.nummberOfPlayer;
     }
+
  //////////////////////////////   
     boolean Winner(){
         if(this.gameEngine.checkD()||this.gameEngine.checkH()||this.gameEngine.checkRD()||this.gameEngine.checkV()){
@@ -45,20 +58,6 @@ public class Controller {
         }
     
 ///////////////////////////////
-    void setXO(int x,int y,String z){
-        if(this.view.buttons[x][y].getText()==" "){
-            this.view.buttons[x][y].setText(z);
-
-            if(Winner()){
-                if(this.gameEngine.player==0)
-                    setTextInLabel("Player 1 won");
-                else {
-                    setTextInLabel("Player 2 won");
-                }
-                this.gameEngine.gameover=true;
-            }
-            nextTurn();
-        }
-    }
+ 
 ///////////////////////////////
 }

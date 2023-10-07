@@ -2,14 +2,11 @@
 
 public class GameEngine {
 	Controller controller;
-	
-	static public int player = 0;
-	
-     boolean gameover = false;
-    
+	int NumberOfSquaresToWin=3;
+    boolean gameover = false;
 
-   public GameEngine(Controller controller ){
-	this.controller = controller;
+   public GameEngine(Controller _controller ){
+	this.controller = _controller;
    }
 
     
@@ -19,41 +16,24 @@ public class GameEngine {
 
 		for(int x=0;x<this.controller.board.rad; x++){
 			for(int i = 0; i < this.controller.board.rad; i++){
-            	if(this.controller.board.gameboard[i][x] !='X')
+            	if(this.controller.board.gameboard[i][x] !=this.controller.player.tecken[this.controller.currentPlayer])
                 	break;
-            	if(i == this.controller.board.rad-1){
-                	return true;//report win for s
-            	}
-        	}
-		}
-		for(int x=0;x<this.controller.board.rad; x++){
-			for(int i = 0; i < this.controller.board.rad; i++){
-            	if(this.controller.board.gameboard[i][x] !='O')
-                	break;
-            	if(i == this.controller.board.rad-1){
+            	if(i == (NumberOfSquaresToWin<=this.controller.board.rad?NumberOfSquaresToWin:this.controller.board.rad)-1){
                 	return true;//report win for s
             	}
         	}
 		}
 		return false;
-	} 
+	}
+
 ////////////////////////
 	public  boolean checkH(){
 		
 		for(int x=0;x<this.controller.board.rad; x++){
 			for(int i = 0; i < this.controller.board.rad; i++){
-            	if(this.controller.board.gameboard[x][i] !='X')
+            	if(this.controller.board.gameboard[x][i] !=this.controller.player.tecken[this.controller.currentPlayer])
                 	break;
-            	if(i == this.controller.board.rad-1){
-                	return true;//report win for s
-            	}
-        	}
-		}
-		for(int x=0;x<this.controller.board.rad; x++){
-			for(int i = 0; i < this.controller.board.rad; i++){
-            	if(this.controller.board.gameboard[x][i] !='O')
-                	break;
-            	if(i == this.controller.board.rad-1){
+            	if(i == (NumberOfSquaresToWin<=this.controller.board.rad?NumberOfSquaresToWin:this.controller.board.rad)-1){
                 	return true;//report win for s
             	}
         	}
@@ -66,38 +46,26 @@ public class GameEngine {
 	public boolean checkD(){
 
 		for(int i = 0; i < this.controller.board.rad; i++){
-			if(this.controller.board.gameboard[i][i] != 'X')
+			if(this.controller.board.gameboard[i][i] != this.controller.player.tecken[this.controller.currentPlayer])
 				break;
-			if(i == this.controller.board.rad-1){
+			if(i == (NumberOfSquaresToWin<=this.controller.board.rad?NumberOfSquaresToWin:this.controller.board.rad)-1){
 				return true;
 			}
 		}
-		for(int i = 0; i < this.controller.board.rad; i++){
-			if(this.controller.board.gameboard[i][i] != 'O')
-				break;
-			if(i == this.controller.board.rad-1){
-				return true;
-			}
-		}
+		
 		return false;
 	}
 	
 ////////////////////////////////
 	public boolean checkRD(){
 		for(int i = 0; i < this.controller.board.rad; i++){
-			if(this.controller.board.gameboard[i][(this.controller.board.rad-1)-i] != 'X')
+			if(this.controller.board.gameboard[i][(this.controller.board.rad-1)-i] != this.controller.player.tecken[this.controller.currentPlayer])
 				break;
-			if(i == this.controller.board.rad-1){
+			if(i == (NumberOfSquaresToWin<=this.controller.board.rad?NumberOfSquaresToWin:this.controller.board.rad)-1){
 				return true;//report win for s
 			}
-		}
-		for(int i = 0; i < this.controller.board.rad; i++){
-			if(this.controller.board.gameboard[i][(this.controller.board.rad-1)-i] != 'O')
-				break;
-			if(i == this.controller.board.rad-1){
-				return true;//report win for s
-			}
-		}
+		}		
 		return false;
 	}
+////////////////////////////////
 }

@@ -1,8 +1,9 @@
 public class Board {
-    static int rad=10;
+    Controller controller;
+    int rad=3;
     int buttonscount=rad*rad;
-    static public char[][] gameboard = new char[rad][rad];
-    Board(){
+    public char[][] gameboard = new char[rad][rad];
+    Board( ){
         
     }
 }
