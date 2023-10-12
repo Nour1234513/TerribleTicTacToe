@@ -22,8 +22,6 @@ public class ViewS implements ActionListener  {
         ViewS (Controller _controller,int _ViewId){
         this.controller =_controller;
         this.viewId=_ViewId;
-        
-        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         myButtonPanel.setLayout(new GridLayout(this.controller.board.rad,this.controller.board.rad));

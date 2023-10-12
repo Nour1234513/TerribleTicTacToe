@@ -20,31 +20,18 @@ public class Controller {
 ////////////////////////////////////
     void buttonClicked(int x,int y,int id){
         if(!this.gameEngine.gameover){
-            if(view2.viewId==id&&id==currentPlayer){
-            if(this.view2.buttons[x][y].getText()==" "){
-                move(x,y);
-
-                if(Winner()){
-                    String s;
-                    s="Player ";
-                    s+= currentPlayer+1;
-                    s+= " won";
-                    setTextInLabel(s);
-                    this.gameEngine.gameover=true;
+            if(this.board.gameboard[x][y]==' '){
+                if(view2.viewId==id&&id==currentPlayer){
+                    makeAMove(x,y);
+                    nextTurn();
                 }
-            nextTurn();
-            }
-             
-            }
-            if(view.viewId==id&&currentPlayer==id){
-            if(this.view.buttons[x][y].getText()==" "){
-                move(x,y);
-                nextTurn();
-            }
-             
+                if(view.viewId==id&&currentPlayer==id){
+                    makeAMove(x,y);
+                    nextTurn();  
+                }
             }
         }
-        }
+    }
     
 
 ///////////////////////////////////
@@ -70,16 +57,17 @@ public class Controller {
         }
     
 ///////////////////////////////
- void move(int x, int y){
+ void makeAMove(int x, int y){
     this.board.gameboard[x][y]=this.player.tecken[currentPlayer];
     this.view.buttons[x][y].setText(Character.toString( this.player.tecken[currentPlayer]));
     this.view2.buttons[x][y].setText(Character.toString( this.player.tecken[currentPlayer]));
     if(Winner()){
-                    String s;
-                    s="Player ";
-                    s+= currentPlayer+1;
-                    s+= " won";
-                    setTextInLabel(s);
+        setTextInLabel("player "+ (currentPlayer+1) +" Won");
+                    // String s;
+                    // s="Player ";
+                    // s+= currentPlayer+1;
+                    // s+= " won";
+                    // setTextInLabel(s);
                     this.gameEngine.gameover=true;
                 }
  }
