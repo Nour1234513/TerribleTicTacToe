@@ -9,21 +9,21 @@ import java.awt.event.ActionListener;
 
 
 public class ViewS implements ActionListener  {
+    int viewId=0;
     ActionListener actionListener;
     private Controller controller;
     JButton [][] buttons;
     JLabel myLabel = new JLabel();
     JPanel myTextPanel = new JPanel();
     JPanel myButtonPanel = new JPanel();
-    JFrame frame = new JFrame("TerribleTicTacToe");
     JPanel myMainPanel = new JPanel();
+    JFrame frame = new JFrame ("TikTakToe");
 
-
-        ViewS (Controller _controller){
-
+        ViewS (Controller _controller,int _ViewId){
         this.controller =_controller;
+        this.viewId=_ViewId;
         
-
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         myButtonPanel.setLayout(new GridLayout(this.controller.board.rad,this.controller.board.rad));
@@ -64,7 +64,7 @@ public class ViewS implements ActionListener  {
          for (int i = 0; i < this.controller.board.rad; i++){
              for (int j= 0; j < this.controller.board.rad; j++){
                 if (e.getSource() == buttons[i][j]){
-                    this.controller.buttonClicked(i, j);//my particular action for that button
+                    this.controller.buttonClicked(i, j,viewId);//my particular action for that button
                 }                                       
             }
         }
