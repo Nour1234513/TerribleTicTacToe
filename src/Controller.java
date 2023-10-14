@@ -7,6 +7,7 @@ public class Controller {
     Player player;
     ViewS view2;
     int currentPlayer=0;
+
    
 
     public Controller(){
@@ -47,29 +48,16 @@ public class Controller {
     }
 
  //////////////////////////////   
-    boolean Winner(){
-        if(this.gameEngine.checkD()||this.gameEngine.checkH()||this.gameEngine.checkRD()||this.gameEngine.checkV()){
-            return true;
-            }
-            else {
-                return false;
-            }
-        }
     
 ///////////////////////////////
  void makeAMove(int x, int y){
     this.board.gameboard[x][y]=this.player.tecken[currentPlayer];
     this.view.buttons[x][y].setText(Character.toString( this.player.tecken[currentPlayer]));
     this.view2.buttons[x][y].setText(Character.toString( this.player.tecken[currentPlayer]));
-    if(Winner()){
+    if(this.gameEngine.winner()){
         setTextInLabel("player "+ (currentPlayer+1) +" Won");
-                    // String s;
-                    // s="Player ";
-                    // s+= currentPlayer+1;
-                    // s+= " won";
-                    // setTextInLabel(s);
-                    this.gameEngine.gameover=true;
-                }
- }
+        this.gameEngine.gameover=true;
+    }
+}
 ///////////////////////////////
 }
